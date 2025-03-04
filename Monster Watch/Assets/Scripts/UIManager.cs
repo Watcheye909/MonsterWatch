@@ -55,18 +55,20 @@ public class UIManager : MonoBehaviour
     //Spawning the rangers
     public void SpawnRanger ()
     {
-        float rand = Random.Range(0, 3);
-        if (rand < 1.1f)
+
+        float rand = Random.Range(0, 4);
+        Debug.Log(rand);
+        if (rand < 2)
         {
             Instantiate(Ranger, Tower1.transform.position, Quaternion.identity);
             searchPrompt.SetActive(false);
         }
-        else if (1 < rand && rand > 2.1f) 
+        else if (rand == 2) 
         {
             Instantiate(Ranger, Tower2.transform.position, Quaternion.identity);
             searchPrompt.SetActive(false);
         }
-        else if (rand > 2)
+        else if (rand == 3)
         {
             Instantiate(Ranger, Tower3.transform.position, Quaternion.identity);
             searchPrompt.SetActive(false);

@@ -14,18 +14,21 @@ public class Ranger : MonoBehaviour
     void Start()
     {
         destination = MapBackground.SearchPos;
-        movementVector = (new Vector3(destination.x - transform.position.x, destination.y - transform.position.y)).normalized;
+        movementVector = (new Vector3((destination.x - transform.position.x) / 2, (destination.y - transform.position.y) / 2)).normalized;
+        MapBackground.availableRangers -= 1;
     }
 
 
     //Moving towards the destinaion.
     void Update()
     {
-        if (UIManager.rangerReport == false)
+        if (UIManager.inUI == false)
         {
-            transform.position += movementVector * Time.deltaTime;
+            transform.position += (movementVector / 3) * Time.deltaTime;
             if ((destination.x - 0.3f) < transform.position.x && (destination.x + 0.3f) > transform.position.x && (destination.y - 0.3f) < transform.position.y && (destination.y + 0.3f) > transform.position.y)
             {
+                MapBackground.availableRangers += 1;
+                Debug.Log(MapBackground.availableRangers);
                 UIManager.rangerReport = true;
                 Destroy(gameObject);
             }
