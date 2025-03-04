@@ -603,6 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29b3cbed5dc990047913678021f8f424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  searchPrompt: {fileID: 1107434448}
 --- !u!1 &1014616947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1341,7 +1342,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1602464530}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2116509026}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: NoButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1107434448}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1602464530
 MonoBehaviour:
   m_ObjectHideFlags: 0
