@@ -5,8 +5,10 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public static bool inUI;
+    public static bool rangerReport;
 
     public GameObject searchPrompt;
+    public GameObject rangerReportPrompt;
     public GameObject Ranger;
     public GameObject Tower1;
     public GameObject Tower2;
@@ -16,6 +18,8 @@ public class UIManager : MonoBehaviour
     {
         inUI = false;
         searchPrompt.SetActive(false);
+        rangerReportPrompt.SetActive(false);
+        rangerReport = false;
     }
     
     //Checking if the player is using the UI.
@@ -23,18 +27,27 @@ public class UIManager : MonoBehaviour
     {
         if (searchPrompt.activeInHierarchy)
         {
-            //Debug.Log("active");
+            inUI = true;
+        }
+        else if (rangerReportPrompt.activeInHierarchy)
+        {
             inUI = true;
         }
         else
         {
             inUI = false;
         }
+
+        if (rangerReport)
+        {
+            rangerReportPrompt.SetActive(true);
+        }
     }
 
     //Functionality for every button that says no.
     public void NoButton(GameObject prompt)
     {
+        rangerReport = false;
         prompt.SetActive(false);
     }
 

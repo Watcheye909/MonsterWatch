@@ -7,6 +7,8 @@ public class Ranger : MonoBehaviour
     private Vector3 destination;
     private Vector3 movementVector;
 
+    public GameObject RangerReportPrompt;
+
 
     //Determines destination.
     void Start()
@@ -19,11 +21,15 @@ public class Ranger : MonoBehaviour
     //Moving towards the destinaion.
     void Update()
     {
-        Debug.Log(movementVector);
-        transform.position += movementVector * Time.deltaTime;
-        if ((destination.x - 0.3f) < transform.position.x && (destination.x + 0.3f) > transform.position.x && (destination.y - 0.3f) < transform.position.y && (destination.y + 0.3f) > transform.position.y)
+        if (UIManager.rangerReport == false)
         {
-            Destroy(gameObject);
+            transform.position += movementVector * Time.deltaTime;
+            if ((destination.x - 0.3f) < transform.position.x && (destination.x + 0.3f) > transform.position.x && (destination.y - 0.3f) < transform.position.y && (destination.y + 0.3f) > transform.position.y)
+            {
+                UIManager.rangerReport = true;
+                Destroy(gameObject);
+            }
         }
+        
     }
 }
