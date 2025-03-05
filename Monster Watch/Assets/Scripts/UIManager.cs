@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     
     void Start()
     {
+        Screen.SetResolution(1920, 1080, true);
         inUI = false;
         searchPrompt.SetActive(false);
         rangerReportPrompt.SetActive(false);
