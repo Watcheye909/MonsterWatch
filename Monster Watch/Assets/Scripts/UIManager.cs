@@ -58,7 +58,6 @@ public class UIManager : MonoBehaviour
     {
 
         float rand = Random.Range(0, 4);
-        Debug.Log(rand);
         if (rand < 2)
         {
             Instantiate(Ranger, Tower1.transform.position, Quaternion.identity);
