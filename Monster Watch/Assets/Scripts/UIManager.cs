@@ -16,7 +16,6 @@ public class UIManager : MonoBehaviour
     
     void Start()
     {
-        Screen.SetResolution(1920, 1080, true);
         inUI = false;
         searchPrompt.SetActive(false);
         rangerReportPrompt.SetActive(false);
@@ -58,6 +57,7 @@ public class UIManager : MonoBehaviour
     {
 
         float rand = Random.Range(0, 4);
+        Debug.Log(rand);
         if (rand < 2)
         {
             Instantiate(Ranger, Tower1.transform.position, Quaternion.identity);

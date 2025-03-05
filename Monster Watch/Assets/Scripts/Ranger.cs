@@ -9,17 +9,13 @@ public class Ranger : MonoBehaviour
 
     public GameObject RangerReportPrompt;
 
-    private int rangerNum;
-    private bool reachedDestination;
 
     //Determines destination.
     void Start()
     {
         destination = MapBackground.SearchPos;
         movementVector = (new Vector3((destination.x - transform.position.x) / 2, (destination.y - transform.position.y) / 2)).normalized;
-        rangerNum = MapBackground.availableRangers;
         MapBackground.availableRangers -= 1;
-        reachedDestination = false;
     }
 
 
@@ -29,14 +25,10 @@ public class Ranger : MonoBehaviour
         /*
         if (UIManager.inUI == false)
         {
-            if (!reachedDestination)
-            {
-                transform.position += (movementVector / 3) * Time.deltaTime;
-            }
-
-            //When the ranger reaches the destination.
+            transform.position += (movementVector / 3) * Time.deltaTime;
             if ((destination.x - 0.3f) < transform.position.x && (destination.x + 0.3f) > transform.position.x && (destination.y - 0.3f) < transform.position.y && (destination.y + 0.3f) > transform.position.y)
             {
+<<<<<<< Updated upstream
                 //Notify the radio buttons.
                 if (rangerNum == 1 && !RadioButton.ranger1InPosition && !reachedDestination)
                 {
@@ -81,6 +73,12 @@ public class Ranger : MonoBehaviour
                     Destroy(gameObject);
                 }
 
+=======
+                MapBackground.availableRangers += 1;
+                Debug.Log(MapBackground.availableRangers);
+                UIManager.rangerReport = true;
+                Destroy(gameObject);
+>>>>>>> Stashed changes
             }
         }
         */
