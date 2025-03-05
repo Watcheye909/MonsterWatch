@@ -35,7 +35,6 @@ public class GameManagerScript : MonoBehaviour
         text.text = TileScript.tileInfo;
         okayButton.SetActive(true);
         searchesLeft -= 1;
-        inUI = false;
     }
 
     public void NoButton ()
@@ -45,5 +44,6 @@ public class GameManagerScript : MonoBehaviour
         dialogueBox.SetActive(false);
         okayButton.SetActive(false);
         text.text = "";
+        inUI = false;
     }
 }
