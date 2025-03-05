@@ -26,6 +26,7 @@ public class Ranger : MonoBehaviour
     //Moving towards the destinaion.
     void Update()
     {
+        /*
         if (UIManager.inUI == false)
         {
             if (!reachedDestination)
@@ -80,9 +81,8 @@ public class Ranger : MonoBehaviour
                     Destroy(gameObject);
                 }
 
-
             }
         }
-        
+        */
     }
 }
