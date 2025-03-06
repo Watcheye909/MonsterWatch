@@ -1,10 +1,10 @@
 using JetBrains.Annotations;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -35,7 +35,7 @@ public class GameManagerScript : MonoBehaviour
     public static bool mothGuessed;
     public static bool dragonGuessed;
 
-    public static readonly string Score;
+
 
     public Rigidbody2D radioRigidBody;
 
@@ -69,7 +69,16 @@ public class GameManagerScript : MonoBehaviour
     public void YesButton ()
     {
         radioRigidBody.AddForce((new Vector2(0, 100) * 20) / searchesLeft);
-        radioRigidBody.AddTorque(300 / searchesLeft);
+        float rand = Random.Range(0, 4);
+        if (rand >= 3)
+        {
+            radioRigidBody.AddTorque(300 / searchesLeft);
+        }
+        else
+        {
+            radioRigidBody.AddTorque(-300 / searchesLeft);
+        }
+        
 
         if (!MicrophoneScript.makingGuess)
         {
@@ -112,7 +121,15 @@ public class GameManagerScript : MonoBehaviour
         friendlyMoth.SetActive(false);
 
         radioRigidBody.AddForce((new Vector2(0, 100) * 20) / searchesLeft);
-        radioRigidBody.AddTorque(300 / searchesLeft);
+        float rand = Random.Range(0, 4);
+        if (rand >= 3)
+        {
+            radioRigidBody.AddTorque(300 / searchesLeft);
+        }
+        else
+        {
+            radioRigidBody.AddTorque(-300 / searchesLeft);
+        }
 
         monsterGuess = monster;
         if (monsterGuess == tileGuess)
@@ -139,7 +156,8 @@ public class GameManagerScript : MonoBehaviour
             if (mothGuessed && dragonGuessed)
             {
                 float scoring = (searchesLeft + (guessesLeft + 3 * 5) ) * 1000;
-                PlayerPrefs.SetString(Score, "Score: " + scoring.ToString());
+                PlayerPrefs.SetString("Score", "Score: " + scoring.ToString());
+                SceneManager.LoadScene(2);
             }
 
         }
@@ -163,7 +181,8 @@ public class GameManagerScript : MonoBehaviour
 
             if (guessesLeft == 0)
             {
-                PlayerPrefs.SetString(Score, "You Lose!");
+                PlayerPrefs.SetString("Score", "You Lose!");
+                SceneManager.LoadScene(2);
             }
         }
     }
