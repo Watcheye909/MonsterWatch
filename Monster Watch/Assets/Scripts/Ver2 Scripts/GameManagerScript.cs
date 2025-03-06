@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -33,6 +35,10 @@ public class GameManagerScript : MonoBehaviour
     public static bool mothGuessed;
     public static bool dragonGuessed;
 
+    public static readonly string Score;
+
+    public Rigidbody2D radioRigidBody;
+
     void Start()
     {
         Screen.SetResolution(1920, 1080, true);
@@ -55,11 +61,16 @@ public class GameManagerScript : MonoBehaviour
         friendlyMoth.SetActive(false);
         mothGuessed = false;
         dragonGuessed = false;
+
+        
 }
 
     
     public void YesButton ()
     {
+        radioRigidBody.AddForce((new Vector2(0, 100) * 20) / searchesLeft);
+        radioRigidBody.AddTorque(300 / searchesLeft);
+
         if (!MicrophoneScript.makingGuess)
         {
             yesButton.SetActive(false);
@@ -100,10 +111,14 @@ public class GameManagerScript : MonoBehaviour
         psychicMoth.SetActive(false);
         friendlyMoth.SetActive(false);
 
+        radioRigidBody.AddForce((new Vector2(0, 100) * 20) / searchesLeft);
+        radioRigidBody.AddTorque(300 / searchesLeft);
+
         monsterGuess = monster;
         if (monsterGuess == tileGuess)
         {
             
+
             if (monsterGuess == "PSYCHIC MOTH")
             {
                 mothGuessed = true;
@@ -111,7 +126,6 @@ public class GameManagerScript : MonoBehaviour
             else if (monsterGuess == "SPINY DRAGON")
             {
                 dragonGuessed = true;
-                Debug.Log("YAYY");
             }
 
             text.text = "Amazing Boss! We found the monster and safely delt with it.";
@@ -121,6 +135,12 @@ public class GameManagerScript : MonoBehaviour
             madeTileGuess = false;
             monsterGuess = "";
             tileGuess = "";
+
+            if (mothGuessed && dragonGuessed)
+            {
+                float scoring = (searchesLeft + (guessesLeft + 3 * 5) ) * 1000;
+                PlayerPrefs.SetString(Score, "Score: " + scoring.ToString());
+            }
 
         }
         else
@@ -140,6 +160,11 @@ public class GameManagerScript : MonoBehaviour
             madeTileGuess = false;
             monsterGuess = "";
             tileGuess = "";
+
+            if (guessesLeft == 0)
+            {
+                PlayerPrefs.SetString(Score, "You Lose!");
+            }
         }
     }
 
