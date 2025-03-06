@@ -8,6 +8,7 @@ public class TileScript : MonoBehaviour
     public static string tileInfo;
 
     public string personalTileInfo;
+    public string monsterFoundHere;
 
     public TextMeshProUGUI text;
     public GameObject okayButton;
@@ -18,6 +19,10 @@ public class TileScript : MonoBehaviour
     void Start()
     {
         tileInfo = "";
+        if (monsterFoundHere == "" || monsterFoundHere == null)
+        {
+            monsterFoundHere = "NONE";
+        }
     }
 
  
@@ -38,6 +43,12 @@ public class TileScript : MonoBehaviour
             tileInfo = personalTileInfo;
 
             Debug.Log("hello");
+        }
+
+        if (GameManagerScript.inUI && GameManagerScript.makingGuess && MicrophoneScript.makingGuess)
+        {
+            GameManagerScript.tileGuess = monsterFoundHere;
+            GameManagerScript.madeTileGuess = true;
         }
         
     }
