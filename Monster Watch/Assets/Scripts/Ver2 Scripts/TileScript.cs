@@ -33,6 +33,7 @@ public class TileScript : MonoBehaviour
 
     private void OnMouseDown()
     {
+        
         if (!GameManagerScript.inUI && GameManagerScript.searchesLeft > 0)
         {
             GameManagerScript.inUI = true;
@@ -42,7 +43,6 @@ public class TileScript : MonoBehaviour
             noButton.SetActive(true);
             tileInfo = personalTileInfo;
 
-            Debug.Log("hello");
         }
 
         if (GameManagerScript.inUI && GameManagerScript.makingGuess && MicrophoneScript.makingGuess)

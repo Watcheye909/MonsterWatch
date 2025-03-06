@@ -171,8 +171,8 @@ public class GameManagerScript : MonoBehaviour
 
     private void Update()
     {
-        searchText.text = searchesLeft.ToString() + " SP";
-        guessesText.text = guessesLeft.ToString() + " G";
+        searchText.text = searchesLeft.ToString();
+        guessesText.text = guessesLeft.ToString();
 
         if (madeTileGuess == true)
         {
